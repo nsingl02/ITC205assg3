@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import Booking.State;
 import hotel.credit.CreditCard;
 import hotel.utils.IOUtils;
 
@@ -133,16 +134,32 @@ public class Booking {
 
 
 	public void checkIn() {
+		 if(state !=State.PENDING){
+		        throw new RuntimeException("Cannot Checkin if a booking state is not pending");
+	        }
+	        room.checkin();
+	        state = State.CHECKED_IN;
 		// TODO Auto-generated method stub
 	}
 
 
 	public void addServiceCharge(ServiceType serviceType, double cost) {
+		 if(state !=State.CHECKED_IN){
+	           throw new RuntimeException("State is not Checkedin");
+	       }
+	       ServiceCharge serviceCharge = new ServiceCharge(serviceType, cost);
+	       charges.add(serviceCharge);
 		// TODO Auto-generated method stub
 	}
 
 
 	public void checkOut() {
+		 if(state !=State.CHECKED_IN){
+		        throw new RuntimeException("Cannot Checkin if the booking state is not Checkedin");
+	        }
+	        room.checkout();
+		    state = State.CHECKED_OUT;
+
 		// TODO Auto-generated method stub
 	}
 
