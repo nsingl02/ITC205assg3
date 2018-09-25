@@ -6,14 +6,14 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import Booking.State;
+
 import hotel.credit.CreditCard;
 import hotel.utils.IOUtils;
 
 public class Booking {
 	
 	private enum State {PENDING, CHECKED_IN, CHECKED_OUT};
-	
+	Booking booking;
 	private Guest guest;
 	private Room room;
 	private Date bookedArrival; 
@@ -157,7 +157,7 @@ public class Booking {
 		 if(state !=State.CHECKED_IN){
 		        throw new RuntimeException("Cannot Checkin if the booking state is not Checkedin");
 	        }
-	        room.checkout();
+	        room.checkout(booking);
 		    state = State.CHECKED_OUT;
 
 		// TODO Auto-generated method stub
