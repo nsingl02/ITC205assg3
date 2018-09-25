@@ -84,27 +84,72 @@ public class Hotel {
 		return bookingsByConfirmationNumber.get(confirmationNumber);
 	}
 
-	
-	public long book(Room room, Guest guest, 
-			Date arrivalDate, int stayLength, int occupantNumber,
-			CreditCard creditCard) {
-		// TODO Auto-generated method stub
-		return 0L;		
+
+	public long book(Room room, Guest guest,
+					 Date arrivalDate, int stayLength, int occupantNumber,
+					 CreditCard creditCard) {
+
+		Booking booking = room.book(guest,arrivalDate,stayLength,occupantNumber,creditCard);
+		if (booking !=null){
+
+			bookingsByConfirmationNumber.put(booking.getConfirmationNumber(),booking);
+			return booking.getConfirmationNumber();
+		}
+
+		else {
+			return 0L;
+		}
+
 	}
 
-	
+
 	public void checkin(long confirmationNumber) {
-		// TODO Auto-generated method stub
+
+		Booking booking = findBookingByConfirmationNumber(confirmationNumber);
+
+		if(booking == null){
+
+			throw new RuntimeException();
+
+		}
+
+		else {
+
+			booking.checkIn();
+			booking.getRoom().checkin();
+			activeBookingsByRoomId.put(booking.getRoom().getId(),booking);
+		}
 	}
+
 
 
 	public void addServiceCharge(int roomId, ServiceType serviceType, double cost) {
-		// TODO Auto-generated method stub
-	}
 
-	
+		Booking booking = activeBookingsByRoomId.get(roomId);
+
+		if(booking == null ){
+
+			throw new RuntimeException();
+		}
+		else {
+
+			booking.addServiceCharge(serviceType,cost);
+
+		}
+	}
 	public void checkout(int roomId) {
-		// TODO Auto-generated method stub
+
+		Booking booking = activeBookingsByRoomId.get(roomId);
+
+		if(booking == null){
+
+			throw new RuntimeException();
+
+		}
+		else {
+
+			booking.checkOut();
+		}
 	}
 
 
