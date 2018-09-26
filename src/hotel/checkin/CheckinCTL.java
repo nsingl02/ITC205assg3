@@ -1,6 +1,6 @@
 package hotel.checkin;
 
-import CheckinCTL.State;
+
 import hotel.credit.CreditCard;
 import hotel.entities.Booking;
 import hotel.entities.Guest;
@@ -17,6 +17,7 @@ public class CheckinCTL {
 	private State state;
 	private Booking booking = null;
 	private long confirmationNumber;
+	private String Message;
 	
 
 	public CheckinCTL(Hotel hotel) {
@@ -85,18 +86,18 @@ public class CheckinCTL {
 			throw new RuntimeException("State not confirmed");
 		}
 		if (confirmed){
-			hotel.checkin();
+			hotel.checkin(confirmationNumber);
 			String Message = ("Checkin Confirmed");
-			UI.displayMessage(Message);
+			checkInUI.displayMessage(Message);
 			state = State.COMPLETED;
-			UI.state = State.COMPLETED;
+			checkInUI.setState(CheckinUI.State.COMPLETED);
 
 		}
 		else
-			String Message = ("Checkin Cancelled");
-			UI.displayMessage(Message);
+			Message = ("Checkin Cancelled");
+			checkInUI.displayMessage(Message);
 			state = State.CANCELLED;
-			UI.state = State.CANCELLED;
+			checkInUI.setState(CheckinUI.State.CANCELLED);
 
 		// TODO Auto-generated method stub
 	}
