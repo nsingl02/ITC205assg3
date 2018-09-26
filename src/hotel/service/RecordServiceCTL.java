@@ -1,6 +1,6 @@
 package hotel.service;
 
-import RecordServiceCTL.State;
+
 import hotel.entities.Booking;
 import hotel.entities.Hotel;
 import hotel.entities.ServiceType;
@@ -8,7 +8,9 @@ import hotel.utils.IOUtils;
 
 public class RecordServiceCTL {
 	
-	private static enum State {ROOM, SERVICE, CHARGE, CANCELLED, COMPLETED};
+	private static enum State {ROOM, SERVICE, CHARGE, CANCELLED, COMPLETED}
+
+	private static final int ServiceType = 0;
 	
 	private Hotel hotel;
 	private RecordServiceUI recordServiceUI;
@@ -16,6 +18,7 @@ public class RecordServiceCTL {
 	
 	private Booking booking;
 	private int roomNumber;
+	private String serviceDescription;
 
 
 	public RecordServiceCTL(Hotel hotel) {
@@ -46,21 +49,21 @@ public class RecordServiceCTL {
 			state = State.SERVICE;
 			recordServiceUI.setState(RecordServiceUI.State.SERVICE);
 		}
-	}
+	} 
 	
 	
 	public void serviceDetailsEntered(ServiceType serviceType, double cost) {
 		if (state != State.SERVICE){
-			throw RuntimeException("State is not Service");
+			throw new RuntimeException("State is not Service");
 		}
-		hotel.addServiceCharge();
-		UI.displayServiceChargeMessage();
+		booking.addServiceCharge(serviceType, cost);
+		recordServiceUI.displayServiceChargeMessage(roomNumber, cost, serviceDescription);
 		state = State.COMPLETED;
-		UI.state = State.COMPLETED;
+		recordServiceUI.setState(RecordServiceUI.State.COMPLETED);
 		// TODO Auto-generated method stub
 	}
 		// TODO Auto-generated method stub
-	}
+	
 
 
 	public void cancel() {
