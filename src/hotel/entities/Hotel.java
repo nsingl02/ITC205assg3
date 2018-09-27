@@ -102,7 +102,6 @@ public class Hotel {
 
 	}
 
-
 	public void checkin(long confirmationNumber) {
 
 		Booking booking = findBookingByConfirmationNumber(confirmationNumber);
@@ -110,17 +109,13 @@ public class Hotel {
 		if(booking == null){
 
 			throw new RuntimeException();
-
 		}
-
 		else {
 
 			booking.checkIn();
 			activeBookingsByRoomId.put(booking.getRoom().getId(),booking);
 		}
 	}
-
-
 
 	public void addServiceCharge(int roomId, ServiceType serviceType, double cost) {
 
