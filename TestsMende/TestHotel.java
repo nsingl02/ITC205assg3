@@ -73,9 +73,14 @@ public class TestHotel {
         assertThrows(RuntimeException.class, e);
     }
 
-   /* @Test
+    @Test
     void testBook() throws ParseException {
 
+      /*  hotel = new Hotel();
+
+        hotel.addRoom(RoomType.TWIN_SHARE,101);
+        hotel.addRoom(RoomType.SINGLE,201);
+        hotel.addRoom(RoomType.DOUBLE,301);
         confirmationNumber = 1123423423L;
         arrivalDate = dateFormat.parse("12-12-2018");
         numberOfOccupants = 1;
@@ -89,9 +94,9 @@ public class TestHotel {
         Mockito.verify(room, Mockito.times(1)).book(guest,arrivalDate,stayLength,
                 numberOfOccupants,creditCard);
         Mockito.verify(booking, Mockito.times(1)).getConfirmationNumber();
+*/
 
-
-    }*/
+    }
 
 
 }
