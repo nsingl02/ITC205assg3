@@ -1,6 +1,9 @@
 package hotel.service;
 
 
+
+
+
 import hotel.entities.Booking;
 import hotel.entities.Hotel;
 import hotel.entities.ServiceType;
@@ -56,14 +59,19 @@ public class RecordServiceCTL {
 		if (state != State.SERVICE){
 			throw new RuntimeException("State is not Service");
 		}
+
+		hotel.addServiceCharge(roomNumber,serviceType,cost);
+		recordServiceUI.displayServiceChargeMessage(roomNumber,cost,"Description");
+
 		booking.addServiceCharge(serviceType, cost);
 		recordServiceUI.displayServiceChargeMessage(roomNumber, cost, serviceDescription);
+
 		state = State.COMPLETED;
 		recordServiceUI.setState(RecordServiceUI.State.COMPLETED);
 		// TODO Auto-generated method stub
 	}
 		// TODO Auto-generated method stub
-	
+
 
 
 	public void cancel() {

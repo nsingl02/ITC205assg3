@@ -82,6 +82,8 @@ public class CheckinCTL {
 
 	
 	public void checkInConfirmed(boolean confirmed) {
+
+		String cancelledMessage = ("Checkin Cancelled");
 		if (state != State.CONFIRMING){
 			throw new RuntimeException("State not confirmed");
 		}
@@ -93,11 +95,19 @@ public class CheckinCTL {
 			checkInUI.setState(CheckinUI.State.COMPLETED);
 
 		}
+
+		else {
+			checkInUI.displayMessage(cancelledMessage);
+			state = State.CANCELLED;
+			checkInUI.setState(CheckinUI.State.COMPLETED);
+		}
+
 		else
 			Message = ("Checkin Cancelled");
 			checkInUI.displayMessage(Message);
 			state = State.CANCELLED;
 			checkInUI.setState(CheckinUI.State.CANCELLED);
+
 
 		// TODO Auto-generated method stub
 	}
