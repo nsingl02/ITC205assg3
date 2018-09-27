@@ -1,6 +1,5 @@
 package hotel.checkin;
 
-import CheckinCTL.State;
 import hotel.credit.CreditCard;
 import hotel.entities.Booking;
 import hotel.entities.Guest;
@@ -81,23 +80,24 @@ public class CheckinCTL {
 
 	
 	public void checkInConfirmed(boolean confirmed) {
+
+		String cancelledMessage = ("Checkin Cancelled");
 		if (state != State.CONFIRMING){
 			throw new RuntimeException("State not confirmed");
 		}
 		if (confirmed){
-			hotel.checkin();
+			hotel.checkin(confirmationNumber);
 			String Message = ("Checkin Confirmed");
-			UI.displayMessage(Message);
+			checkInUI.displayMessage(Message);
 			state = State.COMPLETED;
-			UI.state = State.COMPLETED;
+			checkInUI.setState(CheckinUI.State.COMPLETED);
 
 		}
-		else
-			String Message = ("Checkin Cancelled");
-			UI.displayMessage(Message);
+		else {
+			checkInUI.displayMessage(cancelledMessage);
 			state = State.CANCELLED;
-			UI.state = State.CANCELLED;
-
+			checkInUI.setState(CheckinUI.State.COMPLETED);
+		}
 		// TODO Auto-generated method stub
 	}
 

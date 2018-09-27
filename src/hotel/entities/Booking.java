@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-
-import Booking.State;
 import hotel.credit.CreditCard;
 import hotel.utils.IOUtils;
 
@@ -157,7 +155,7 @@ public class Booking {
 		 if(state !=State.CHECKED_IN){
 		        throw new RuntimeException("Cannot Checkin if the booking state is not Checkedin");
 	        }
-	        room.checkout();
+	        //room =room.state
 		    state = State.CHECKED_OUT;
 
 		// TODO Auto-generated method stub

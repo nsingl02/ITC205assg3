@@ -1,6 +1,5 @@
 package hotel.service;
 
-import RecordServiceCTL.State;
 import hotel.entities.Booking;
 import hotel.entities.Hotel;
 import hotel.entities.ServiceType;
@@ -51,16 +50,15 @@ public class RecordServiceCTL {
 	
 	public void serviceDetailsEntered(ServiceType serviceType, double cost) {
 		if (state != State.SERVICE){
-			throw RuntimeException("State is not Service");
+			throw new RuntimeException("State is not Service");
 		}
-		hotel.addServiceCharge();
-		UI.displayServiceChargeMessage();
+		hotel.addServiceCharge(roomNumber,serviceType,cost);
+		recordServiceUI.displayServiceChargeMessage(roomNumber,cost,"Description");
 		state = State.COMPLETED;
-		UI.state = State.COMPLETED;
+		recordServiceUI.setState(RecordServiceUI.State.COMPLETED);
 		// TODO Auto-generated method stub
 	}
 		// TODO Auto-generated method stub
-	}
 
 
 	public void cancel() {

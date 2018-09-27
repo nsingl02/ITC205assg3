@@ -116,7 +116,6 @@ public class Hotel {
 		else {
 
 			booking.checkIn();
-			booking.getRoom().checkin();
 			activeBookingsByRoomId.put(booking.getRoom().getId(),booking);
 		}
 	}
