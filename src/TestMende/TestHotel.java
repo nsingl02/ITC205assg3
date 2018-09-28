@@ -97,7 +97,7 @@ public class TestHotel {
 
         Mockito.verify(room, Mockito.times(1)).book(guest,arrivalDate,stayLength,
                 numberOfOccupants,creditCard);
-        Mockito.verify(booking, Mockito.times(2));
+        Mockito.verify(booking, Mockito.times(2)).getConfirmationNumber();
 
     }
     @Test

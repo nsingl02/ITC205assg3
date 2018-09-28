@@ -7,4 +7,6 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitPlatform.class)
 @SelectPackages({"TestMende"})
 public class TestSuite {
+
+
 }
