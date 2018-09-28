@@ -13,8 +13,6 @@ public class RecordServiceCTL {
 	
 	private static enum State {ROOM, SERVICE, CHARGE, CANCELLED, COMPLETED}
 
-	private static final int ServiceType = 0;
-	
 	private Hotel hotel;
 	private RecordServiceUI recordServiceUI;
 	private State state;
