@@ -99,6 +99,7 @@ public class CheckinCTL {
 		else {
 			checkInUI.displayMessage(cancelledMessage);
 			state = State.CANCELLED;
+
 			checkInUI.setState(CheckinUI.State.COMPLETED);
 		}
 
@@ -106,11 +107,13 @@ public class CheckinCTL {
 			Message = ("Checkin Cancelled");
 			checkInUI.displayMessage(Message);
 			state = State.CANCELLED;
+
 			checkInUI.setState(CheckinUI.State.CANCELLED);
+		}
 
 
 		// TODO Auto-generated method stub
-	}
+	
 
 
 	public void cancel() {

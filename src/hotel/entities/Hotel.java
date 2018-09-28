@@ -143,6 +143,7 @@ public class Hotel {
 		else {
 
 			booking.checkOut();
+			activeBookingsByRoomId.remove(roomId);
 		}
 	}
 
