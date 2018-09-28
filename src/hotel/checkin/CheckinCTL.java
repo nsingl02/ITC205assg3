@@ -1,5 +1,6 @@
 package hotel.checkin;
 
+
 import hotel.credit.CreditCard;
 import hotel.entities.Booking;
 import hotel.entities.Guest;
@@ -16,6 +17,7 @@ public class CheckinCTL {
 	private State state;
 	private Booking booking = null;
 	private long confirmationNumber;
+	private String Message;
 	
 
 	public CheckinCTL(Hotel hotel) {
@@ -93,11 +95,20 @@ public class CheckinCTL {
 			checkInUI.setState(CheckinUI.State.COMPLETED);
 
 		}
+
 		else {
 			checkInUI.displayMessage(cancelledMessage);
 			state = State.CANCELLED;
 			checkInUI.setState(CheckinUI.State.COMPLETED);
 		}
+
+		else
+			Message = ("Checkin Cancelled");
+			checkInUI.displayMessage(Message);
+			state = State.CANCELLED;
+			checkInUI.setState(CheckinUI.State.CANCELLED);
+
+
 		// TODO Auto-generated method stub
 	}
 
