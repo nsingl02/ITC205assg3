@@ -101,6 +101,7 @@ public class CheckinCTL {
 			state = State.CANCELLED;
 
 
+
 			checkInUI.setState(CheckinUI.State.COMPLETED);
 		}
 
@@ -108,6 +109,7 @@ public class CheckinCTL {
 			Message = ("Checkin Cancelled");
 			checkInUI.displayMessage(Message);
 			state = State.CANCELLED;
+
 
 
 			checkInUI.setState(CheckinUI.State.CANCELLED);
