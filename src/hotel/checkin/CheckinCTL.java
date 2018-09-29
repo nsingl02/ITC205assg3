@@ -111,6 +111,7 @@ public class CheckinCTL {
 			state = State.CANCELLED;
 
 
+
 			checkInUI.setState(CheckinUI.State.CANCELLED);
 		}
 
